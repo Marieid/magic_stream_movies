@@ -21,6 +21,7 @@ import ( // Start of the import block
 // It uses the database.OpenCollection function to establish the connection.
 var movieCollection *mongo.Collection = database.OpenCollection("movies")
 
+// Validator object for data validation
 var validate = validator.New()
 
 // GetMovies is the handler function for the GET /movies route.
@@ -130,7 +131,7 @@ func AddMovie() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add movie"})
 			return
 		}
-		
+
 		c.JSON(http.StatusCreated, result)
 	}
 }

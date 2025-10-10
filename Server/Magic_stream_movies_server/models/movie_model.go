@@ -21,6 +21,6 @@ type Movie struct {
 	Poster_path  string        `bson:"poster_path" json:"poster_path" validate:"required,url"`
 	YouTube_id   string        `bson:"youtube_id" json:"youtube_id" validate:"required"`
 	Genre        []Genre       `bson:"genre" json:"genre" validate:"required,dive"`
-	Admin_review string        `bson:"admin_review" json:"admin_review" validate:"required"`
+	Admin_review string        `bson:"admin_review" json:"admin_review"`
 	Ranking      Ranking       `bson:"ranking" json:"ranking" validate:"required"`
 }

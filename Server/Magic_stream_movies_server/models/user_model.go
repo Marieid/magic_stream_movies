@@ -20,3 +20,19 @@ type User struct {
 	Refresh_token    string        `bson:"refresh_token" json:"refresh_token"`
 	Favourite_genres []Genre       `bson:"favourite_genres" json:"favourite_genres" validate:"required,dive"`
 }
+
+type UserLogin struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required,min=6"`
+}
+
+// DTO Data Transfer Object - Transfer data from frontend to backend or between software
+// By using DTO we're only exposing the data that needs to be exposed to the client
+type UserResponse struct {
+	User_ID          string  `json:"user_id"`
+	First_name       string  `json:"first_name"`
+	Last_name        string  `json:"last_name"`
+	Email            string  `json:"email"`
+	Role             string  `json:"role"`
+	Favourite_genres []Genre `json:"favourite_genres"`
+}

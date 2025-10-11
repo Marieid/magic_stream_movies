@@ -23,4 +23,9 @@ func SetUpUnprotectedRoutes(router *gin.Engine) {
 	// This route is handled by the LoginUser function from the 'controller' package
 	// Logins a registered user using tokens to the application
 	router.POST("/login", controller.LoginUser())
+
+	// Define a PATCH route for the path "/updatereview/:imdb_id"
+	// This route is handled by the AdminReviewUpdate function from the 'controller' package
+	// It updates the review and ranking of the movie imdb_id passed in parameters
+	router.PATCH("/updatereview/:imdb_id", controller.AdminReviewUpdate())
 }

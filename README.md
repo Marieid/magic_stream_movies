@@ -1,7 +1,7 @@
-🎬 Magic Stream Movies API
+# 🎬 Magic Stream Movies API
 This is the backend server for a movie streaming and recommendation platform. It is built with Go using the Gin web framework and uses MongoDB as the persistent data store.
 
-✨ Features
+## ✨ Features
 RESTful API: Provides endpoints for fetching and managing movie data.
 
 MongoDB Integration: Uses the official Go driver for database operations.
@@ -12,7 +12,7 @@ JWT Middleware: Includes authentication middleware to protect sensitive routes.
 
 Data Validation: Uses the go-playground/validator package to ensure data integrity on incoming requests.
 
-⚙️ Setup and Installation
+## ⚙️ Setup and Installation
 Prerequisites
 You need the following installed on your system:
 
@@ -33,11 +33,12 @@ Create a file named .env in the root of the server directory (magic_stream_movie
 
 Code snippet
 
-# .env file content
-MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-name>/..."
-DATABASE_NAME="magic_stream_db"
-JWT_SECRET_KEY="your_super_secret_key" # Used for token signing
-Install Dependencies:
+### .env file content
+```MONGODB_URI="mongodb+srv://<username>:<password>@<cluster-name>/..."```
+```DATABASE_NAME="magic_stream_db"```
+```JWT_SECRET_KEY="your_super_secret_key" # Used for token signing```
+
+#### Install Dependencies:
 
 Install the Go dependencies listed in your go.mod file (which includes Gin, MongoDB driver, godotenv, and validator).
 

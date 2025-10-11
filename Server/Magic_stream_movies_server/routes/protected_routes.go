@@ -24,4 +24,10 @@ func SetUpProtectedRoutes(router *gin.Engine) {
 	// This route is handled by the AddMovie function from the 'controller' package
 	// Adds a single movie'to the movie collection in the database functions.
 	router.POST("/addmovie", controller.AddMovie())
+
+	// Protected endpoint
+	// Define a GET route for the path "/recommendedmovies"
+	// This route is handled by the GetRecommendedMovies function from the 'controller' package
+	// Returns an array of recommended movies for the user, based on the user id, limited to 5 documents
+	router.GET("/recommendedmovies", controller.GetRecommendedMovies())
 }

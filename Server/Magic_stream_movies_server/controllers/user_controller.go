@@ -8,7 +8,8 @@ import (
 	// Custom imports for database connection and data model structure
 	"github.com/Marieid/magic_stream_movies/Server/Magic_stream_movies_server/database" // Import the database connection setup
 	"github.com/Marieid/magic_stream_movies/Server/Magic_stream_movies_server/models"   // Import the Movie structure definition
-	"github.com/gin-gonic/gin"                                                          // The Gin web framework
+	"github.com/Marieid/magic_stream_movies/Server/Magic_stream_movies_server/utils"
+	"github.com/gin-gonic/gin" // The Gin web framework
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/v2/bson"  // MongoDB BSON library for query filters
 	"go.mongodb.org/mongo-driver/v2/mongo" // MongoDB driver core functionality
@@ -129,6 +130,32 @@ func LoginUser() gin.HandlerFunc {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
 			return // Stop execution
 		}
+
+		token, refreshToken, err := utils.GenerateAllTokens(foundUser.Email, foundUser.First_name, foundUser.Last_name, foundUser.Role, foundUser.User_ID)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate tokens"})
+			return
+		}
+
+		err = utils.UpdateAllTokens(foundUser.User_ID, token, refreshToken, database.Client)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to refresh tokens"})
+			return
+
+		}
+
+		c.JSON(http.StatusOK, models.UserResponse{
+			User_ID:          foundUser.User_ID,
+			First_name:       foundUser.First_name,
+			Last_name:        foundUser.Last_name,
+			Email:            foundUser.Email,
+			Role:             foundUser.Role,
+			Token:            token,
+			Refresh_token:    refreshToken,
+			Favourite_genres: foundUser.Favourite_genres,
+		})
 
 	}
 }

@@ -40,10 +40,15 @@ func main() {
 	// Adds a single movie'to the movie collection in the database functions.
 	router.POST("/addmovie", controller.AddMovie())
 
-	// Define a POST route for the path "/signup"
+	// Define a POST route for the path "/register"
 	// This route is handled by the RegisterUser function from the 'controller' package
 	// Adds a user record to the users collection in the database functions.
 	router.POST("/register", controller.RegisterUser())
+
+	// Define a POST route for the path "/login"
+	// This route is handled by the LoginUser function from the 'controller' package
+	// Logins a registered user using tokens to the application
+	router.POST("/login", controller.LoginUser())
 
 	// Start the server and listen for incoming requests on port 8080
 	// router.Run() is a blocking call, meaning the program stays here until the server stops

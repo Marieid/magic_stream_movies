@@ -30,4 +30,9 @@ func SetUpProtectedRoutes(router *gin.Engine) {
 	// This route is handled by the GetRecommendedMovies function from the 'controller' package
 	// Returns an array of recommended movies for the user, based on the user id, limited to 5 documents
 	router.GET("/recommendedmovies", controller.GetRecommendedMovies())
+
+	// Define a PATCH route for the path "/updatereview/:imdb_id"
+	// This route is handled by the AdminReviewUpdate function from the 'controller' package
+	// It updates the review and ranking of the movie imdb_id passed in parameters
+	router.PATCH("/updatereview/:imdb_id", controller.AdminReviewUpdate())
 }
